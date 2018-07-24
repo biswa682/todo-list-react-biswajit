@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import Render from './Render';
+
 class CreateHeader extends React.Component{
 	constructor(props){
 		super(props);
@@ -12,7 +13,12 @@ class CreateHeader extends React.Component{
 	}
 	addInList(){
 		let elements=this.state.todos;
-		elements.push({status:false,text:this.state.inputText,id:this.state.noOfTodos++});
+		let inputData = {
+			status:false,
+			text:this.state.inputText,
+			id:this.state.noOfTodos++
+		} 
+		elements.push(inputData);	
 		this.setState(() => ({
       		todos: elements
     	}));
@@ -58,7 +64,7 @@ class CreateHeader extends React.Component{
 	render(){
 		return(
 			<div>
-				<input type="text" onKeyPress={((event) => this.getValue(event))}/>
+				<input type="text" name="data" onKeyPress={((event) => this.getValue(event))}/>
 			 	<button onClick={() => this.addInList()}>Click me</button>	
 				<Render todosData={this.state.todos} checkStatus={(event) => this.getStatus(event)} checkDeletedItem={(event) => this.getDeletedItem(event)}/>	 	
 			</div>
