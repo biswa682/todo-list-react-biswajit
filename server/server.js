@@ -23,31 +23,40 @@ app.get('/', function(req, res){
 });
 
 app.post('/api/todos', async function(req, res){
-	var Todo = new storeData(req.body)
-		.save()
-		.then(item => {
-			 res.send("item saved to database");
-		 })
-		 .catch(err => {
-		 	res.status(400).send("unable to save to database");
+	Todo.create(req.body, function(err, d){
+		if(err)
+			res.status(500).send(err)
+		else
+			res.status(200).send(d)
 	});
 });
+
 app.get('/api/todos', async function(req, res){
-	Todo.find({}, function(err, data){
+	Todo.find(function(err, d){
 		if(err)
-			res.send("Error")
+			res.status(500).send(err)
 		else
-			res.send(data);
+			res.status(200).send(d)
 	});
 });
 app.put('/api/todos/:id', async function(req, res){
 	let thisId = Number(req.params.id);
-	Todo.findByIdAndUpdate(thisId, {"text":"Updated text"}).then(function(err,d){
-		res.send("Updateed")
+	Todo.findByIdAndUpdate({_id: thisId}, req.body, function(err,d){
+		if(err)
+			res.status(500).send(err)
+		else
+			res.send(req.body)
 	});
 });
 app.delete('/api/todos/:id', async function(req, res){
-	
+	let thisId = Number(req.params.id);
+	Todo.findByIdAndRemove({_id: thisId}, function(err, d){
+		const deltedItem = thisId+" id is deleted"
+		if(err)
+			res.status(500).send(err)
+		else
+			res.status(200).send(deltedItem)
+	});
 });
 app.listen(3000, function(){
 	console.log("Server is running .......");

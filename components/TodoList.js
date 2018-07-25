@@ -5,13 +5,14 @@ var checkList = {
 var unCheckList = {
   'textDecoration': 'none'
 }
-class Render extends React.Component{
+class TodoList extends React.Component{
    
     render(){
       const todos=this.props.todosData;
       let listItems = todos.map(todo => {
         var toggleStatus = todo.status ? checkList : unCheckList;
-        return (<li style={toggleStatus} key={todo.id} id={todo.id} ><input type="checkbox" onChange={this.props.checkStatus}/>{todo.text}<button onClick={this.props.checkDeletedItem}>X</button></li>)
+  
+        return (<li style={toggleStatus} key={todo._id} id={todo._id} ><input type="checkbox" onChange={this.props.checkStatus} defaultChecked={todo.status}/>{todo.text}<button onClick={this.props.checkDeletedItem}>X</button></li>)
       })
       return(
         <div className="navigation">
@@ -22,7 +23,7 @@ class Render extends React.Component{
       )
     }
   }
-export default Render
+export default TodoList
 
 
 // (event)=>this.checkStatus(event)

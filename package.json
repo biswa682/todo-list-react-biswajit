@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "jest": "jest",
     "webpack-server": "webpack-dev-server --mode development --open",
     "dev": "webpack --mode development",
     "dev2": "webpack",
     "dev3": "webpack --bail --progress --profile",
-    "server": "webpack && cd server && nodemon app"
+    "server": "npm run dev && cd server && nodemon server"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,10 @@
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^23.4.1",
     "webpack": "^4.16.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.4"

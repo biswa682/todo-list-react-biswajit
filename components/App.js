@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import Header from './createHeader';
-ReactDom.render(<Header/>, document.getElementById('header'));
+import TodoContainer from './TodoContainer';
+ReactDom.render(<TodoContainer/>, document.getElementById('header'));
 
 
 

@@ -1,5 +1,5 @@
 module.exports = {
-	entry: './app/js/app.js',
+	entry: './components/App.js',
 	output: {
 		filename: 'bundle.js'
 	},
@@ -15,6 +15,12 @@ module.exports = {
 			}
 		]
 	},
+	jest: {
+	    "testPathIgnorePatterns": [
+	      "/node_modules/",
+	      "/build/"
+	    ]
+	 }
 	// resolve: {
 	// 	extensions: ['.js', '.jsx']
 	// },
